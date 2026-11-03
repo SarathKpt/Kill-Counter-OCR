@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-*/
+venv/
+env/
+
+# PyInstaller and packaged CPU/GPU release outputs
+build/
+dist/
+*.spec
+releases/
+
+# Local runtime output and temporary files
+*.log
+*.log.*
+*.tmp
+*.bak
+*.old
+calibrated_kill_region.png
+
+# Tool caches and Windows Explorer metadata
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+Thumbs.db
+desktop.ini
