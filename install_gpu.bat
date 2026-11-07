@@ -16,6 +16,7 @@ if errorlevel 1 exit /b 1
 if errorlevel 1 exit /b 1
 echo.
 echo GPU environment installed. Start it with run_gpu.bat.
-echo For CUDA, install the NVIDIA CUDA 13 toolkit first; the display driver alone is not enough.
-echo The app will report CPU fallback if required CUDA libraries are missing.
+echo The GPU environment installs the CUDA and cuDNN runtime packages used by ONNX Runtime.
+echo Keep your NVIDIA display driver current; a separate CUDA toolkit is usually not required.
+echo The app reports the active inference provider and any CPU fallback.
 pause

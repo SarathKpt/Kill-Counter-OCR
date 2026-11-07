@@ -13,5 +13,5 @@ if errorlevel 1 exit /b 1
 echo.
 echo GPU application is in releases\apps\FENIKZ Kill OCR GPU.
 echo Copy the complete folder when distributing it; do not move only the EXE.
-echo GPU mode requires a compatible NVIDIA driver and CUDA/cuDNN runtime libraries.
+echo GPU mode requires a compatible NVIDIA driver. The GPU build includes the CUDA/cuDNN runtime libraries.
 pause

@@ -420,10 +420,10 @@ def create_ai_engine(config: dict[str, Any], allow_cuda: bool = True):
         except Exception:
             log.exception("Could not preload CUDA/cuDNN libraries; CUDA inference may fail")
     ai_threads = max(1, int(config.get("ai_cpu_threads", 1)))
-    engine = RapidOCR(params={
+    cuda_device_id = max(0, int(config.get("ai_cuda_device_id", 0)))
+    engine_params = {
         # Keep the full recognition pipeline for accuracy.
         "EngineConfig.onnxruntime.use_cuda": use_cuda,
-        "EngineConfig.onnxruntime.cuda_ep_cfg.device_id": int(config.get("ai_cuda_device_id", 0)),
         # One shared CUDA stream is the closest CUDA equivalent to a single
         # execution lane; GPU kernels still use their normal hardware threads.
         "EngineConfig.onnxruntime.cuda_ep_cfg.use_ep_level_unified_stream": bool(
@@ -431,7 +431,18 @@ def create_ai_engine(config: dict[str, Any], allow_cuda: bool = True):
         ),
         "EngineConfig.onnxruntime.intra_op_num_threads": ai_threads,
         "EngineConfig.onnxruntime.inter_op_num_threads": 1,
-    })
+    }
+    # ONNX Runtime 1.26+ emits a misleading plugin-device warning when the
+    # legacy CUDA EP receives an explicit device_id=0. Device zero is its
+    # default, so omit that provider option and remove RapidOCR's YAML default.
+    if use_cuda and cuda_device_id != 0:
+        engine_params["EngineConfig.onnxruntime.cuda_ep_cfg.device_id"] = cuda_device_id
+    engine = RapidOCR(params=engine_params)
+    if use_cuda and cuda_device_id == 0:
+        try:
+            del engine.cfg.EngineConfig.onnxruntime.cuda_ep_cfg["device_id"]
+        except (AttributeError, KeyError, TypeError):
+            log.warning("Could not omit CUDA device_id=0 from RapidOCR settings; ONNX Runtime may print a plugin lookup warning")
     return engine, device_name
 
 
