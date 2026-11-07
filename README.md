@@ -26,7 +26,7 @@ The service provides a lightweight count page, a separate control and diagnostic
 
 The packaged release runs in the Windows notification area (system tray). Select its tray icon to open the control page; the menu also opens the OBS widget and the configuration folder/file. The control page can export a JSON backup and import a previously exported JSON configuration. Packaged settings are stored at `%LOCALAPPDATA%\FENIKZ\BGMI Kill OCR\config.json`; importing settings keeps this installation's local host and port, and the chosen CPU/GPU build keeps its inference mode. The first launch copies the bundled defaults into that folder.
 
-Build on Windows from the project folder after installing its matching environment:
+Build on Windows from the project folder after installing its matching environment. The packaged apps start with clean defaults (including LAN access disabled and an uncalibrated Kill area), not the developer's local capture regions or access code:
 
 - `install.bat`, then `build_cpu.bat` creates `releases\apps\FENIKZ Kill OCR CPU`.
 - `install_gpu.bat`, then `build_gpu.bat` creates `releases\apps\FENIKZ Kill OCR GPU`.
