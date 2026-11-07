@@ -89,13 +89,13 @@ def main() -> int:
         import app as service
 
         config = service.load_config()
-        host = "127.0.0.1"
+        host = "0.0.0.0" if config.get("lan_access_enabled", False) else "127.0.0.1"
         port = int(config.get("port", 8765))
         server = make_server(host, port, service.app, threaded=True)
         threading.Thread(target=server.serve_forever, name="web-server", daemon=True).start()
         service.start_worker()
-        control_url = f"http://{host}:{port}/control"
-        widget_url = f"http://{host}:{port}/widget"
+        control_url = f"http://127.0.0.1:{port}/"
+        widget_url = f"http://{host}:{port}/widget/kill"
         config_path = service.CONFIG_PATH
         log.info("Tray app started (%s); config: %s", device, config_path)
 

@@ -1,5 +1,7 @@
 {
   "host": "127.0.0.1",
+  "lan_access_enabled": true,
+  "lan_access_code": "12341234",
   "port": 8765,
   "window_title_contains": "MobileStream",
   "recognition_engine": "rapidocr",
@@ -19,12 +21,40 @@
   "minimum_ocr_confidence": 20,
   "single_pass_minimum_confidence": 45,
   "kill_region": {
-    "x": 0.076331,
-    "y": 0.004701,
-    "width": 0.016568,
-    "height": 0.02735
+    "x": 0.072142,
+    "y": 0.00602,
+    "width": 0.018542,
+    "height": 0.023178
   },
-  "widget_html": "<span data-kills></span>",
+  "widget_html": "<span data-kills>—</span>",
   "widget_css": "html,body{width:100%;height:100%}body{margin:0;background:transparent;overflow:hidden;color:#fff;font:900 64px/1 Arial,sans-serif;text-shadow:2px 3px 4px #000,0 0 8px #000}#custom-widget-root{display:grid;place-items:center;width:100%;height:100%;padding:8px}.count-changed{animation:count-pop 300ms ease-out}@keyframes count-pop{50%{transform:scale(1.2)}}",
-  "widget_js": "// React to a newly confirmed count, for example:\n// window.killWidget.onChange(count => console.log('Kills:', count));\nwindow.killWidget.onChange(count => {\n  document.querySelectorAll('[data-kills], #kills').forEach(element => {\n    element.classList.remove('count-changed');\n    void element.offsetWidth;\n    element.classList.add('count-changed');\n  });\n});"
+  "widget_js": "// React to a newly confirmed count, for example:\n// window.killWidget.onChange(count => console.log('Kills:', count));\nwindow.killWidget.onChange(count => {\n  document.querySelectorAll('[data-kills], #kills').forEach(element => {\n    element.classList.remove('count-changed');\n    void element.offsetWidth;\n    element.classList.add('count-changed');\n  });\n});",
+  "capture_areas": [
+    {
+      "slug": "kill",
+      "name": "Kill",
+      "region": {
+        "x": 0.072142,
+        "y": 0.00602,
+        "width": 0.018542,
+        "height": 0.023178
+      },
+      "widget_html": "<span data-kills>—</span>",
+      "widget_css": "html,body{width:100%;height:100%}body{margin:0;background:transparent;overflow:hidden;color:#fff;font:900 64px/1 Arial,sans-serif;text-shadow:2px 3px 4px #000,0 0 8px #000}#custom-widget-root{display:grid;place-items:center;width:100%;height:100%;padding:8px}.count-changed{animation:count-pop 300ms ease-out}@keyframes count-pop{50%{transform:scale(1.2)}}",
+      "widget_js": "// React to a newly confirmed count, for example:\n// window.killWidget.onChange(count => console.log('Kills:', count));\nwindow.killWidget.onChange(count => {\n  document.querySelectorAll('[data-kills], #kills').forEach(element => {\n    element.classList.remove('count-changed');\n    void element.offsetWidth;\n    element.classList.add('count-changed');\n  });\n});"
+    },
+    {
+      "slug": "tdm",
+      "name": "tdm",
+      "region": {
+        "x": 0.148919,
+        "y": 0.005891,
+        "width": 0.019991,
+        "height": 0.023693
+      },
+      "widget_html": "<span data-kills>—</span>",
+      "widget_css": "html,body{width:100%;height:100%}body{margin:0;background:transparent;overflow:hidden;color:#fff;font:900 64px/1 Arial,sans-serif;text-shadow:2px 3px 4px #000,0 0 8px #000}#custom-widget-root{display:grid;place-items:center;width:100%;height:100%;padding:8px}.count-changed{animation:count-pop 300ms ease-out}@keyframes count-pop{50%{transform:scale(1.2)}}",
+      "widget_js": "// React to a newly confirmed count, for example:\n// window.killWidget.onChange(count => console.log('Kills:', count));\nwindow.killWidget.onChange(count => {\n  document.querySelectorAll('[data-kills], #kills').forEach(element => {\n    element.classList.remove('count-changed');\n    void element.offsetWidth;\n    element.classList.add('count-changed');\n  });\n});"
+    }
+  ]
 }
